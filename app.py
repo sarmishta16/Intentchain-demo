@@ -34,6 +34,10 @@ st.markdown("""
 # Header
 st.markdown('<div class="title">🛡 IntentChain</div>', unsafe_allow_html=True)
 st.markdown('<div class="subtitle">AI Execution Verification Layer</div>', unsafe_allow_html=True)
+st.sidebar.header("⚙️ Policy Settings")
+
+allowed_action = st.sidebar.selectbox("Allowed Action", ["buy", "sell"])
+max_amount = st.sidebar.number_input("Max Amount", value=1000)
 
 st.write("")
 
@@ -51,7 +55,7 @@ if run:
     actions = get_ai_actions()
 
     # Step 3: Verify
-    results = verify(intent, actions)
+    results = verify(intent, actions, allowed_action, max_amount)
 
     st.divider()
 
